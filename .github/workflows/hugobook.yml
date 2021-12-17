@@ -43,29 +43,29 @@ jobs:
           hugo --gc --minify --cleanDestinationDir --baseURL=https://books.tangx.in/istio-in-action/
           touch public/.nojekyll
 
-      # - name: Pushes to another repository
-      #   uses: cpina/github-action-push-to-another-repository@main
-      #   env:
-      #     API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     source-directory: 'hugobook-builder/public'
-      #     destination-github-username: 'tangx'
-      #     destination-repository-name: 'hugobook'
-      #     user-email: uyinn@live.com
-      #     target-branch: gh-pages
-      #     target-directory: '/'
-
-
-      - name: Commit files
-        run: |
-          find ./hugobook-builder/public -maxdepth 1
-          git config --local user.email "uyinn@live.com"
-          git config --local user.name "tangx"
-          git add hugobook-builder/public --force
-          git status
-          git commit -am "update gh-pages"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
+          source-directory: 'hugobook-builder/public'
+          destination-github-username: 'tangxin'
+          destination-repository-name: 'istio-in-action'
+          user-email: uyinn@live.com
+          target-branch: gh-pages
+          target-directory: '/'
+
+
+      # - name: Commit files
+      #   run: |
+      #     find ./hugobook-builder/public -maxdepth 1
+      #     git config --local user.email "uyinn@live.com"
+      #     git config --local user.name "tangx"
+      #     git add hugobook-builder/public --force
+      #     git status
+      #     git commit -am "update gh-pages"
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: gh-pages
