@@ -8,9 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-18.04
-    # defaults:
-    #   run:
-    #     working-directory: ./
     steps:
       - uses: actions/checkout@v1
         with:
