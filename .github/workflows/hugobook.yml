@@ -60,7 +60,7 @@ jobs:
         run: |
           git config --local user.email "uyinn@live.com"
           git config --local user.name "tangx"
-          git add hugobook-builder/public
+          git add hugobook-builder/public --force
           git commit -am "update gh-pages"
       - name: Push changes
         uses: ad-m/github-push-action@master
