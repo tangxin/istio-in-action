@@ -28,7 +28,7 @@ jobs:
           find ./ -maxdepth 2
           env
           cp -a ./docs/* hugobook-builder/content/
-          cp README.md hugobook-builder/content//_index.md
+          cp README.md hugobook-builder/content/_index.md
 
       - name: show env
         run: |
@@ -44,6 +44,7 @@ jobs:
         run: |
           cd hugobook-builder
           hugo --gc --minify --cleanDestinationDir --baseURL=https://books.tangx.in/istio-in-action/
+          touch public/.nojekyll
 
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
@@ -51,8 +52,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: 'hugobook-builder/public'
-          destination-github-username: 'tangx'
-          destination-repository-name: 'hugobook'
+          # destination-github-username: 'tangx'
+          # destination-repository-name: 'hugobook'
           user-email: uyinn@live.com
-          target-branch: master
-          target-directory: '/istio-in-action'
+          target-branch: gh-pages
+          target-directory: '/'
